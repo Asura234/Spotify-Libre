@@ -2819,10 +2819,10 @@ class SpotifyInfinityServer(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(contenido)
 
-servidor = HTTPServer(("localhost", 8095), SpotifyInfinityServer)
-print("Servidor Spotify Master Edition iniciado en puerto 8095.")
-print("Abre en tu navegador: http://localhost:8095/")
-print("-------------------------------------------------------")
-print("Para detener y cerrar el servidor, presiona: CTRL + C")
-print("-------------------------------------------------------")
-servidor.serve_forever()
+import os
+
+if __name__ == "__main__":
+    puerto = int(os.environ.get("PORT", 8095))
+    servidor = HTTPServer(("0.0.0.0", puerto), SpotifyInfinityServer)
+    print(f"Servidor Spotify Master Edition iniciado en puerto {puerto}.")
+    servidor.serve_forever()

@@ -2735,7 +2735,11 @@ class SpotifyInfinityServer(BaseHTTPRequestHandler):
             import random
             codigo_seis = str(random.randint(100000, 999999))
             self.enviar_json({"success": True, "codigo": codigo_seis})
-
+    
+    def do_HEAD(self):
+        self.send_response(200)
+        self.end_headers()
+    
     def do_GET(self):
         parsed_url = urlparse(self.path)
         if parsed_url.path == "/":
